@@ -6,7 +6,7 @@
 /*   By: cskipjac <cskipjac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 19:22:57 by cskipjac          #+#    #+#             */
-/*   Updated: 2021/11/15 18:55:41 by cskipjac         ###   ########.fr       */
+/*   Updated: 2021/11/17 20:26:41 by cskipjac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_s	null_flags(t_s s, int k, const char *str)
 		s.term = 0;
 		s.weight = 0;
 		s.accuracy = 0;
+		s.dm = 0;
 	}
 	if (k == 1 && str[s.i] == '%')
 		s.i++;
@@ -34,8 +35,8 @@ t_s	null_flags(t_s s, int k, const char *str)
 t_s	flags(t_s s, const char *str)
 {
 	s = null_flags(s, 0, str);
-	while (str[s.i] == '-' || str[s.i] == '+' || str[s.i] == '#' ||
-			str[s.i] == '0' || str[s.i] == ' ')
+	while (str[s.i] == '-' || str[s.i] == '+' || str[s.i] == '#'
+		|| str[s.i] == '0' || str[s.i] == ' ')
 	{
 		if (str[s.i] == '-')
 			s.minus = 1;
@@ -51,8 +52,9 @@ t_s	flags(t_s s, const char *str)
 	}
 	while (str[s.i] >= '0' && str[s.i] <= '9')
 		s.weight = (s.weight * 10) + (str[s.i++] - '0');
-	if (str[s.i++] == '.')
-		s.term = 1;
+	if (str[s.i] == '.')
+		if (str[s.i] == '.' && str[s.i++])
+			s.term = 1;
 	while (str[s.i] >= '0' && str[s.i] <= '9')
 		s.accuracy = (s.accuracy * 10) + (str[s.i++] - '0');
 	return (null_flags(s, 1, str));
@@ -73,7 +75,8 @@ int	poisk(char c, char *base)
 
 int	printf_plus(va_list ptr, t_s s, const char *str)
 {
-	static	int		(*op[8])(void *, t_s) = {&fc, &fs, &fd, &fd, &fu, &fx, &fX, &fp};
+	static	int		(*op[8])(void *, t_s) = {&fc, &fs, &fd, &fd,
+						&fu, &fx, &fX, &fp};
 
 	while (str[++s.i])
 	{

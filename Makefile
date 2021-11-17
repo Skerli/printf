@@ -1,11 +1,11 @@
 NAME    =   libftprintf.a
-LIST    =   ft_printf.c main2.c main3.c 
+LIST    =   ft_printf.c fcd.c fxX.c fp.c ft_pr_plus.c fus.c
 LIST_B  =
 OBJ =   $(patsubst %.c,%.o,$(LIST))
 OBJ_B   =   $(patsubst %.c,%.o,$(LIST_B))
 D_FILES =   $(patsubst %.c,%.d,$(LIST) $(LIST_B))
 OPTFLAGS    =   -o2
-FLAGS   =   -Wall -Wextra -Werror
+FLAGS   =   
 all :   $(NAME)
 $(NAME) :   $(OBJ)
 	ar rcs $(NAME) $?
