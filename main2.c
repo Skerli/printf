@@ -14,11 +14,10 @@
 
 int	fpc(int	a)
 {
-	write(1, &a, 1);
-	return (1);
+	return (write(1, &a, 1));
 }
 
-int	fc(void	*c)
+int	fc(void	*c, t_s s)
 {
 	char	*a;
 
@@ -27,8 +26,11 @@ int	fc(void	*c)
 	return (1);
 }
 
-int	fd(void *n)
+int	fd(void *n, t_s s)
 {
+	int	j;
+
+	j = 0;
 	return (fd_plus(*((int *)&n), 0));
 }
 
@@ -49,17 +51,17 @@ int	fd_plus(int n, int i)
 	}
 	if (n >= 10)
 		i = fd_plus(n / 10, i);
-	i = i + fpc((n % 10) + 48);
+	i += fpc((n % 10) + 48);
 	return (i);
 }
 
-int	fs(void *s)
+int	fs(void *st, t_s s)
 {
 	int		i;
 	char	*str;
 
 	i = -1;
-	str = (char *)s;
+	str = (char *)st;
 	if (!str)
 	{
 		write(1, "(null)", 6);

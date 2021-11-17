@@ -12,13 +12,29 @@
 
 #include "ft_printf.h"
 
-int	fX(void *n)
+int	fX(void *n, t_s s)
 {
-	return (xeks("0123456789ABCDEF", *((unsigned int *)&n), 0));
+	int	j;
+
+	j = 0;
+	if (*((unsigned int *)&n) != 0 && s.shar == 1)
+	{
+		j = 2;
+		write(1, "0X", 2);
+	}
+	return (xeks("0123456789ABCDEF", *((unsigned int *)&n), 0) + j);
 }
 
-int	fx(void *n)
+int	fx(void *n, t_s s)
 {
+	int	j;
+
+	j = 0;
+	if (*((unsigned int *)&n) != 0 && s.shar == 1)
+	{
+		j = 2;
+		write(1, "0x", 2);
+	}
 	return (xeks("0123456789abcdef", *((unsigned int *)&n), 0));
 }
 
@@ -30,15 +46,3 @@ int	xeks(char *base, unsigned int n, int i)
 	return (i);
 }
 
-int	fu(void *n)
-{
-	return (fu_plus(*((unsigned int *)&n), 0));
-}
-
-int	fu_plus(unsigned int n, int i)
-{
-	if (n >= 10)
-		i = fd_plus(n / 10, i);
-	i += fpc((n % 10) + 48);
-	return (i);
-}
