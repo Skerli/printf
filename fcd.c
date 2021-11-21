@@ -6,7 +6,7 @@
 /*   By: cskipjac <cskipjac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:12:57 by cskipjac          #+#    #+#             */
-/*   Updated: 2021/11/17 20:57:07 by cskipjac         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:59:37 by cskipjac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,15 @@ int	fd(void *n, t_s s)
 {
 	int	q;
 	int	qa;
-	int	j;
 
-	j = 0;
 	if (*((int *)&n) < 0)
 		s.dm = 1;
 	q = fd_len(*((int *)&n), 0);
 	if ((s.plus == 1 || s.space == 1) && s.dm == 0)
-		j = 1;
-	qa = q + j;
+		s.jd = 1;
+	qa = q + s.jd;
 	if (q < s.accuracy)
-		qa = s.accuracy + j + s.dm;
+		qa = s.accuracy + s.jd + s.dm;
 	if (s.weight > qa && s.weight != 0 && s.minus == 0 && s.nul == 1)
 		s = space_nulld(s, qa, '0', 1);
 	if (s.weight > qa && s.weight != 0 && s.minus == 0 && s.nul == 0)
@@ -93,5 +91,7 @@ int	fd(void *n, t_s s)
 		space_nulld(s, qa, ' ', 1);
 	if (s.weight > qa)
 		qa = s.weight;
+	if (qa > s.weight && s.accuracy == q && *((int *)&n) < 0)
+		qa++;
 	return (qa);
 }

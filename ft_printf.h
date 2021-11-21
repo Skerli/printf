@@ -6,7 +6,7 @@
 /*   By: cskipjac <cskipjac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:27:22 by cskipjac          #+#    #+#             */
-/*   Updated: 2021/11/17 20:57:43 by cskipjac         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:56:19 by cskipjac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_s
 	int	weight;
 	int	accuracy;
 	int	dm;
+	int	jd;
 }	t_s;
 
 t_s		space_null(t_s s, int q, char c, int k);

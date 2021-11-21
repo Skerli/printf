@@ -6,7 +6,7 @@
 /*   By: cskipjac <cskipjac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 19:22:57 by cskipjac          #+#    #+#             */
-/*   Updated: 2021/11/17 20:26:41 by cskipjac         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:58:40 by cskipjac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_s	null_flags(t_s s, int k, const char *str)
 		s.weight = 0;
 		s.accuracy = 0;
 		s.dm = 0;
+		s.jd = 0;
 	}
 	if (k == 1 && str[s.i] == '%')
 		s.i++;

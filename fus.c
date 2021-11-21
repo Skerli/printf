@@ -70,18 +70,19 @@ int	fs(void *st, t_s s)
 	int		q;
 	char	*str;
 
-	i = -1;
-	q = 0;
+	i = 0;
 	str = (char *)st;
 	if (!str)
 		str = "(null)";
 	q = fs_len(str);
+	if (s.term == 1 && s.accuracy < q)
+		q = s.accuracy;
 	if (s.weight > q && s.minus == 0 && s.nul == 0)
 		space_null(s, q, ' ', 1);
 	if (s.weight > q && s.minus == 0 && s.nul == 1)
 		space_null(s, q, '0', 3);
-	while (str[++i])
-		fpc(str[i]);
+	while (i < q)
+		fpc(str[i++]);
 	if (s.weight > q && s.minus == 1)
 		space_null(s, q, ' ', 1);
 	if (s.weight > q)
